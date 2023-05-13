@@ -4,3 +4,4 @@ def duplicar (x: int) -> int:
 
 print (duplicar(2))
 print (duplicar(4))
+print (duplicar(8))
