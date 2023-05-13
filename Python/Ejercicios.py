@@ -3,3 +3,4 @@ def duplicar (x: int) -> int:
     return x
 
 print (duplicar(2))
+print (duplicar(4))
