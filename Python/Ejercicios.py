@@ -113,7 +113,7 @@ def peso_pino(h: float) -> float:
     else:
         p = 3 * 3 * 100 + 2 * 100 * (h-3)
 
-return p
+    return p
 
 #Ejercicio 4.2
 def es_peso_util(p: float) -> bool:
@@ -169,7 +169,7 @@ def vacaciones_o_pala(s: chr, e: int):
     else:
         res = "Agarrá la pala"
 
-print(res)
+    print(res)
 
 vacaciones_o_pala("m", 19)
 
@@ -186,7 +186,7 @@ def imprimir_pares_10_40():
     i: int = 10
     while (i <= 40):
         print(i)
-        i+= 2
+        i += 2
 
 #Ejercicio 6.3
 def eco_10():
