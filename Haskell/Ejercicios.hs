@@ -437,3 +437,7 @@ existeSecuenciaDeTuplas a b (x:xs) | pertenece (a, b) (x:xs) = True
 unirListas :: [t] -> [t] -> [t]
 unirListas (x:xs) (y:ys) | longitud xs == 0 = x:(y:ys)
                          | otherwise = x : (unirListas xs (y:ys))
+
+mcd :: Integer -> Integer -> Integer
+mcd x y | x - y * div x y == 0 = y
+        | otherwise = mcd y (x - y * (div x y))

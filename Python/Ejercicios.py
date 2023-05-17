@@ -253,3 +253,13 @@ def viaje_a_Aristoteles_for(ap: int):
             print ("Viajó veinte años al pasado, estamos en el año " + str(i) + " d.C.")
         else:
             print ("Viajó veinte años al pasado, estamos en el año " + str(abs(i)) + " a.C.")
+
+#Ejercicio Extra
+def MCD(x: int, y: int) -> int:
+    while (x%y != 0):
+        z = y
+        y = x % y
+        x = z
+    return y
+
+print(MCD(265, 185))
