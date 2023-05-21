@@ -1,5 +1,6 @@
 from math import *
 
+#Guia 7
 #Ejercicio 1
 #Ejercicio 1.1
 def raizDe2() -> float:
@@ -50,7 +51,7 @@ def imprimir_dos_veces(estribillo: str):
     estribillo *= 2
     return estribillo
 
-    print(imprimir_dos_veces("And I've been thinking for some time \nHow to spend all these nine lives \nI guess just maybe I could spend one on you"))
+print(imprimir_dos_veces("And I've been thinking for some time \nHow to spend all these nine lives \nI guess just maybe I could spend one on you"))
 
 #Ejercicio 2.4
 def es_multiplo_de(n: int, m: int) -> bool:
@@ -256,10 +257,134 @@ def viaje_a_Aristoteles_for(ap: int):
 
 #Ejercicio Extra
 def MCD(x: int, y: int) -> int:
-    while (x%y != 0):
+    while (x % y != 0):
         z = y
         y = x % y
         x = z
     return y
 
-print(MCD(265, 185))
+print(MCD(350, 125))
+
+#Guía 8
+
+#Ejercicio 1
+#Ejercicio 1.1
+def pertenece(s: list[int], n: int) -> bool:
+    res: bool = False
+    for e in s:
+        if (n == e):
+            res = True
+    
+    return res
+
+#Ejercicio 1.2
+def divideATodos(s: list[int], n: int) -> bool:
+    res: bool = True
+    for e in s:
+        if (e % n != 0):
+            res = False
+    
+    return res
+
+#Ejercicio 1.3
+def sumaTotal(s: list[int]) -> int:
+    res: int = 0
+    for n in s:
+        res += n
+
+    return res
+
+#Ejericio 1.4
+def ordenados(s: list[int]) -> bool:
+    res: bool = True
+    i: int = 0
+    while (i < len(s)-1):
+        if (s[i] > s[i+1]):
+            res = False
+        i += 1
+    
+    return res
+
+#Ejercicio 1.5
+def alguna_palabra_larga(s: list[str]) -> bool:
+    res: bool = False
+    for p in s:
+        if (len(p) > 7):
+            res = True
+
+    return res
+
+#Ejercicio 1.6
+def palindromo(a: str) -> bool:
+    res: bool = True
+    i: int = 0
+    while (i < len(a)-1):
+        if (a[i] != a[len(a)-1-i]):
+            res = False
+        
+        i += 1
+
+    return res
+
+#Ejercicio 1.7
+def seguridad_contrasena(a: str) -> str:
+    res: str = ""
+    if (len(a) < 5):
+        res = "ROJA"
+    elif (len(a) > 8 and hay_mayus(a) and hay_minus(a) and hay_num(a)):
+        res = "VERDE"
+    else:
+        res = "AMARILLA"
+
+    return res
+
+def hay_mayus(a:str) -> bool:
+    res: bool = False
+    for c in a:
+        if (c.isupper()):
+            res = True
+    
+    return res
+
+def hay_minus(a: str) -> bool:
+    res: bool = False
+    for c in a:
+        if (c.islower()):
+            res = True
+
+    return res
+
+def hay_num(a: str) -> bool:
+    res: bool = True
+    for c in a:
+        if(c.isnumeric()):
+            res = True
+
+    return res
+
+#Ejercicio 1.8
+def banco(s: list[(str, int)]) -> int:
+    saldo: int = 0
+    monto: int = 0
+    for t in s:
+        monto = t[1]
+        if (t[0] == "R"):
+            monto = -monto
+        
+        saldo += monto
+    
+    return saldo
+
+#Ejercicio 1.9
+def tres_vocales(a: str) -> bool:
+    res: bool = False
+    vocales: list[str] = ['a', 'e', 'i', 'o', 'u']
+    for c in a:
+        if (pertenece(vocales, c)):
+            vocales.remove(c)
+    
+    if (len(vocales) < 3):
+        res = True
+
+    return res
+
