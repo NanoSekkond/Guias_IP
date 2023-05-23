@@ -1,4 +1,5 @@
 from math import *
+import random as random
 
 #Guia 7
 #Ejercicio 1
@@ -269,16 +270,37 @@ print(MCD(350, 125))
 
 #Ejercicio 1
 #Ejercicio 1.1
-def pertenece(s: list[int], n: int) -> bool:
+#Ejercicio 1.1.1
+def pertenece1(s: list, n: int) -> bool:
     res: bool = False
     for e in s:
         if (n == e):
             res = True
-    
+
+    return res
+
+#Ejercicio 1.1.2
+def pertenece2(s: list, n: int) -> bool:
+    res: bool = False
+    i: int = 0
+    while (i < len(s)):
+        if (n == s[i]):
+            res = True
+        i += 1
+
+    return res
+
+#Ejercicio 1.1.3
+def pertenece3(s: list, n: int) -> bool:
+    res: bool = False
+    for i in range(0, len(s), 1):
+        if (n == s[i]):
+            res = True
+
     return res
 
 #Ejercicio 1.2
-def divideATodos(s: list[int], n: int) -> bool:
+def divideATodos(s: list, n: int) -> bool:
     res: bool = True
     for e in s:
         if (e % n != 0):
@@ -287,7 +309,7 @@ def divideATodos(s: list[int], n: int) -> bool:
     return res
 
 #Ejercicio 1.3
-def sumaTotal(s: list[int]) -> int:
+def sumaTotal(s: list) -> int:
     res: int = 0
     for n in s:
         res += n
@@ -295,7 +317,7 @@ def sumaTotal(s: list[int]) -> int:
     return res
 
 #Ejericio 1.4
-def ordenados(s: list[int]) -> bool:
+def ordenados(s: list) -> bool:
     res: bool = True
     i: int = 0
     while (i < len(s)-1):
@@ -306,7 +328,7 @@ def ordenados(s: list[int]) -> bool:
     return res
 
 #Ejercicio 1.5
-def alguna_palabra_larga(s: list[str]) -> bool:
+def alguna_palabra_larga(s: list) -> bool:
     res: bool = False
     for p in s:
         if (len(p) > 7):
@@ -363,7 +385,7 @@ def hay_num(a: str) -> bool:
     return res
 
 #Ejercicio 1.8
-def banco(s: list[(str, int)]) -> int:
+def banco(s: list) -> int:
     saldo: int = 0
     monto: int = 0
     for t in s:
@@ -380,7 +402,7 @@ def tres_vocales(a: str) -> bool:
     res: bool = False
     vocales: list[str] = ['a', 'e', 'i', 'o', 'u']
     for c in a:
-        if (pertenece(vocales, c)):
+        if (pertenece1(vocales, c)):
             vocales.remove(c)
     
     if (len(vocales) < 3):
@@ -388,3 +410,165 @@ def tres_vocales(a: str) -> bool:
 
     return res
 
+#Ejercicio 2
+#Ejercicio 2.1
+listaN: list = [3,4,5,6,7,8]
+
+def cero_por_par_inout(s: list) -> list:
+    for i in range(0, len(s), 1):
+        if (s[i] % 2 == 0):
+            s[i] = 0
+
+    return s
+
+#Ejercicio 2.2
+def cero_por_par_in(s: list) -> list:
+    s2: list = s.copy()
+    for i in range(0, len(s2), 1):
+        if (s2[i] % 2 == 0):
+            s2[i] = 0
+
+    return s2
+
+print(listaN)
+cero_por_par_in(listaN)
+print(listaN)
+print(cero_por_par_in(listaN))
+
+#Ejercicio 2.3
+def no_vowels(s: str) -> str:
+    vocales: list = ["a", "e", "i", "o", "u"]
+    res: str = ""
+    for c in s:
+        if not(pertenece1(vocales, c)):
+            res += c
+
+    return res
+
+palabra: str = "macucas"
+print(palabra)
+no_vowels(palabra)
+print(palabra)
+print(no_vowels(palabra))
+
+#Ejercicio 2.4
+def no_vowels_space(s: str) -> str:
+    vocales: list = ["a", "e", "i", "o", "u"]
+    res: str = ""
+    for c in s:
+        if (pertenece1(vocales, c)):
+            res += "_"
+        else:
+            res += c
+
+    return res
+
+print(palabra)
+no_vowels_space(palabra)
+print(palabra)
+print(no_vowels_space(palabra))
+
+#Ejercicio 2.5
+def da_vuelta_str(s: str) -> str:
+    res: str = ""
+    for i in range(len(s)-1, -1, -1):
+        res += s[i]
+
+    return res
+
+print(palabra)
+da_vuelta_str(palabra)
+print(palabra)
+print(da_vuelta_str(palabra))
+
+#Ejercicio 3
+#Ejercicio 3.1
+def lista_de_estudiantes() -> list:
+    res: list = []
+    estudiante = str(input())
+    while (estudiante != "listo"):
+        res.append(estudiante)
+        estudiante = str(input())
+
+    return res
+
+#Ejercicio 3.2
+def historial_sube() -> list:
+    res: list = []
+    operacion: str = ""
+    monto: int = ""
+    while (operacion != "X"):
+        print("Seleccionar operacion (C - Cargar, D - Descontar, X - Finalizar)")
+        operacion = str(input())
+        if (operacion != "X"):
+            print("Ingresar monto:")
+            monto = int(input())
+            res.append((operacion, monto))
+
+    return res
+
+#Ejercicio 3.3
+def siete_y_medio() -> list:
+    print ("Jugar al siete y medio? Y/N")
+    check: str = ""
+    check = str(input())
+    if (check == "N"):
+        print("Ortiva >:(")
+        return
+    res: list = []
+    respuesta: str = ""
+    carta: int = 0
+    acumulado: float = 0
+    while (respuesta != "N"):
+        carta = random.choice([1,2,3,4,5,6,7,10,11,12])
+        res.append(carta)
+        if (carta < 10):
+            acumulado += carta
+        else:
+            acumulado += 0.5
+        if (acumulado > 7.5):
+            break
+        print("Sacaste un " + str(carta) + ". Tenés " + str(acumulado) + " puntos. Sacar otra carta o plantarse? Y/N")
+        respuesta = str(input())
+    if (acumulado > 7.5):
+        print("Perdiste D:")
+
+    print ("Tu puntaje fue " + str(acumulado) + " y tus cartas fueron " + str(res))
+
+siete_y_medio()
+
+#Ejercicio 4
+#Ejercicio 4.1
+def pertenece_a_cada_uno(s: list, e: int) -> list:
+    res: list = []
+    for lista in s:
+        res.append((pertenece1(lista, e)))
+
+    return res
+
+print(pertenece_a_cada_uno([[3,4,5,2,5],[2,6,5,4],[2,4,5,3,1,3]], 3))
+
+#Ejercicio 4.2
+def es_matriz(s: list) -> bool:
+    res: bool = True
+    longitud: int = len(s[0])
+    for lista in s:
+        if (len(lista) != longitud):
+            res = False
+            break
+
+    return res
+
+print(es_matriz([[3,4,5],[1,2,3],[4,7,5]]))
+
+#Ejercicio 4.3
+def filas_ordenadas(m: list) -> list:
+    res: list = []
+    for lista in m:
+        res.append((ordenados(lista)))
+
+    return res
+
+print(filas_ordenadas([[3,4,5],[1,2,3],[4,7,5]]))
+
+#Ejercicio 4.4
