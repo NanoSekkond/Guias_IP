@@ -535,7 +535,7 @@ def siete_y_medio() -> list:
 
     print ("Tu puntaje fue " + str(acumulado) + " y tus cartas fueron " + str(res))
 
-siete_y_medio()
+#siete_y_medio()
 
 #Ejercicio 4
 #Ejercicio 4.1
@@ -572,3 +572,36 @@ def filas_ordenadas(m: list) -> list:
 print(filas_ordenadas([[3,4,5],[1,2,3],[4,7,5]]))
 
 #Ejercicio 4.4
+
+#CMS Ejercicio 5
+def sePuedeLlegar(origen: str, destino: str, vuelos: list) -> int:
+    res: int = 1
+    acumulado: list = []
+    bomba: int = 1
+
+    while (vuelos.count((origen, destino)) == 0 and bomba == 1):
+        bomba = 0
+        for vuelo in vuelos:
+            if (vuelo == (origen, destino)):
+                break
+            elif (vuelo[0] == origen):
+                origen = vuelo[1]
+                res += 1
+                acumulado.append(vuelo)
+
+        for vuelo in acumulado:
+            vuelos.remove(vuelo)
+
+        acumulado = []
+
+        for vuelo in vuelos:
+            if (origen == vuelo[0]):
+                bomba = 1
+
+    if (bomba == 0):
+        res = -1
+
+    return res
+            
+print (sePuedeLlegar("D", "B", [("D", "B")]))
+
