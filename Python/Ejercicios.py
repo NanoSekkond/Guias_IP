@@ -573,35 +573,89 @@ print(filas_ordenadas([[3,4,5],[1,2,3],[4,7,5]]))
 
 #Ejercicio 4.4
 
-#CMS Ejercicio 5
-def sePuedeLlegar(origen: str, destino: str, vuelos: list) -> int:
-    res: int = 1
-    acumulado: list = []
-    bomba: int = 1
-
-    while (vuelos.count((origen, destino)) == 0 and bomba == 1):
-        bomba = 0
-        for vuelo in vuelos:
-            if (vuelo == (origen, destino)):
-                break
-            elif (vuelo[0] == origen):
-                origen = vuelo[1]
-                res += 1
-                acumulado.append(vuelo)
-
-        for vuelo in acumulado:
-            vuelos.remove(vuelo)
-
-        acumulado = []
-
-        for vuelo in vuelos:
-            if (origen == vuelo[0]):
-                bomba = 1
-
-    if (bomba == 0):
-        res = -1
-
+#Guia 10
+#Ejercicio 1
+#Ejercicio 1.1
+def contarlineas(nombre: str) -> int:
+    res: int = 0
+    archivo = open(nombre, "r")
+    res = len(archivo.readlines())
+    archivo.close()
     return res
-            
-print (sePuedeLlegar("D", "B", [("D", "B")]))
+
+print(contarlineas("Python\hewwo.txt"))
+
+#Ejercicio 1.2
+def existePalabra(palabra: str, nombre: str) -> bool:
+    res: bool = False
+    curr: str = ""
+    archivo = open(nombre, "r")
+    for c in archivo.read():
+        if (c == " " or c == "\n"):
+            if (palabra == curr):
+                res = True
+                break
+            curr = ""
+        else:
+            curr += c
+    if (palabra == curr):
+        res = True
+    archivo.close()
+    return res
+
+print(existePalabra("nano", "Python\hewwo.txt"))
+
+#Ejercicio 1.3
+def cantidadApariciones(palabra: str, nombre: str) -> int:
+    res: int = 0
+    curr: str = ""
+    archivo = open(nombre, "r")
+    for c in (archivo.read()):
+        if (c == " " or c == "\n"):
+            if (palabra == curr):
+                res += 1
+            curr = ""
+        else:
+            curr += c
+    if (curr == palabra):
+        res += 1
+    archivo.close()
+    return res
+
+print(cantidadApariciones("nano", "Python\hewwo.txt"))
+
+#Ejercicio 2
+def clonarSinComentarios(nombre: str):
+    archivo = open(nombre, "r")
+    clon = open(nombre + "_sin_comentarios", "w")
+    for line in archivo.readlines():
+        for c in line:
+            if (c != " " and c != "#"):
+                clon.write(line)
+                break
+            if (c == "#"):
+                break
+    archivo.close()
+    clon.close()
+
+clonarSinComentarios("Python\hewwo.txt")
+
+#Ejercicio 3
+def invertirLineas(nombre: str):
+    archivo = open(nombre, "r")
+    reverso = open(nombre + "_reverso", "w")
+    for line in archivo.readlines()[::-1]:
+        reverso.write(line)
+    archivo.close()
+    reverso.close()
+
+invertirLineas("Python\hewwo.txt")
+
+#Ejercicio 4
+def agregarLineaFinal(nombre: str, frase: str):
+    archivo = open(nombre, "a")
+    archivo.write("\n" + frase)
+    archivo.close()
+
+agregarLineaFinal("Python\hewwo.txt", "a veces pienso")
 
