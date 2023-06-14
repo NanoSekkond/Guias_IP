@@ -1,5 +1,6 @@
 from math import *
 import random as random
+from queue import LifoQueue as Pila
 
 #Guia 7
 #Ejercicio 1
@@ -624,6 +625,7 @@ def cantidadApariciones(palabra: str, nombre: str) -> int:
 
 print(cantidadApariciones("nano", "Python\hewwo.txt"))
 
+"""
 #Ejercicio 2
 def clonarSinComentarios(nombre: str):
     archivo = open(nombre, "r")
@@ -658,4 +660,77 @@ def agregarLineaFinal(nombre: str, frase: str):
     archivo.close()
 
 agregarLineaFinal("Python\hewwo.txt", "a veces pienso")
+"""
 
+#Ejercicio 8
+def generarNrosAlAzar(n: int, desde: int, hasta: int) -> list:
+    res: list = []
+    for i in range(0, n, 1):
+        res.append(random.randint(desde, hasta))
+    return res
+
+#Ejercicio 9
+def pilaDeNumeros(l: list) -> Pila:
+    res: Pila = Pila()
+    for e in l:
+        res.put(e)
+    return res
+
+#Ejercicio 10
+def cantidadElementos(pila: Pila) -> int:
+    res: int = 0
+    while (not pila.empty()):
+        pila.get()
+        res += 1
+    return res
+
+print(cantidadElementos(pilaDeNumeros(generarNrosAlAzar(10, 1, 10))))
+
+#Ejercicio 11
+def buscarElMaximo(pila: Pila) -> int:
+    res: int = 0
+    while(not pila.empty()):
+        e = pila.get()
+        if (e > res):
+            res = e
+    return res
+
+print(buscarElMaximo(pilaDeNumeros([3,5,4,2,4,5,6,7,8])))
+    
+#Ejercicio 12
+def estaBienBalanceada(s: str) -> bool:
+    res: bool = True
+    acumulado: list = []
+    for c in s:
+        if (c == "("):
+            acumulado.append(c)
+        elif(c == ")"):
+            if ("(" not in acumulado):
+                res = False
+                break
+            else:
+                acumulado.remove("(")
+    if (len(acumulado) != 0):
+        res = False
+    return res
+
+print(estaBienBalanceada("(3x + y)() * (2,3) = 24"))
+
+#Ejercicio 18
+def agruparPorLongitud(nombre: str) -> dict:
+    res: dict = {}
+    lon: int = 0
+    archivo = open(nombre, "r")
+    for c in archivo.read():
+        if (c == " " or c == "\n"):
+            if (lon in res):
+                res[lon] += 1
+            else:
+                res[lon] = 1
+            lon = 0
+        else:
+            lon += 1
+    del res[0]
+    return res
+
+print(agruparPorLongitud("Python\hewwo.txt"))
